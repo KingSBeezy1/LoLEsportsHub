@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LoLEsportsHub.Common\LoLEsportsHub.Common.csproj" />
+    <ProjectReference Include="..\LoLEsportsHub.Data.Common\LoLEsportsHub.Data.Common.csproj" />
+    <ProjectReference Include="..\LoLEsportsHub.GCommon\LoLEsportsHub.GCommon.csproj" />
+  </ItemGroup>
+
+</Project>
