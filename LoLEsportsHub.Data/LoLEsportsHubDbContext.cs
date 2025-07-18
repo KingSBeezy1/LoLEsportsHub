@@ -1,16 +1,21 @@
 ﻿using LoLEsportsHub.Data.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace LoLEsportsHub.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class LoLEsportsHubDbContext : IdentityDbContext
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+        public LoLEsportsHubDbContext(DbContextOptions<LoLEsportsHubDbContext> options)
             : base(options)
         {
-        }       
+        }
         public virtual DbSet<ApplicationUserMatch> ApplicationUserMatches { get; set; } = null!;
         public virtual DbSet<Match> Matches { get; set; } = null!;
         public virtual DbSet<Organizer> Organizers { get; set; } = null!;

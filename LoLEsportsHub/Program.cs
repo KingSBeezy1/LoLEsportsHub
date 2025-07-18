@@ -8,16 +8,22 @@ namespace LoLEsportsHub
     {
         public static void Main(string[] args)
         {
-            var builder = WebApplication.CreateBuilder(args);
+            WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-            var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-            builder.Services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(connectionString));
+            string connectionString = builder.Configuration.GetConnectionString("DefaultConnection") 
+                ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+
+            builder.Services
+                .AddDbContext<LoLEsportsHubDbContext>(options =>
+            {
+                options.UseSqlServer(connectionString);
+            });
+                
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
             builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+                .AddEntityFrameworkStores<LoLEsportsHubDbContext>();
             builder.Services.AddControllersWithViews();
 
             var app = builder.Build();
@@ -39,6 +45,7 @@ namespace LoLEsportsHub
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapControllerRoute(

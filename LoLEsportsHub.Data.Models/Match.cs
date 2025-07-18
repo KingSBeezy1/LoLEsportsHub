@@ -6,12 +6,12 @@
         public string Title { get; set; } = null!;
         public string Region { get; set; } = null!; 
         public DateTime MatchDate { get; set; }
-        public string Winner { get; set; } = null!;
+        public string? Winner { get; set; }
         public string? VODUrl { get; set; }
         public bool IsDeleted { get; set; }
 
-        public virtual ICollection<UserMatchBookmark> BookmarkedByUsers { get; set; }
-            = new HashSet<UserMatchBookmark>();
+        public virtual ICollection<ApplicationUserMatch> BookmarkedByUsers { get; set; }
+            = new HashSet<ApplicationUserMatch>();
         public virtual ICollection<TournamentMatch> Tournaments { get; set; }
             = new HashSet<TournamentMatch>();
     }

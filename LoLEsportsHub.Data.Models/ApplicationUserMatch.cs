@@ -1,8 +1,13 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace LoLEsportsHub.Data.Models
 {
-    public class UserMatchBookmark
+    public class ApplicationUserMatch
     {
         public string ApplicationUserId { get; set; } = null!;
         public virtual IdentityUser ApplicationUser { get; set; } = null!;
