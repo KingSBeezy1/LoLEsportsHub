@@ -1,0 +1,68 @@
+﻿@using LoLEsportsHub.Web.ViewModels.Tournament
+@model TournamentBracketViewModel
+
+@{
+    ViewData["Title"] = $"{Model.TournamentName} - Matches";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/user.css">
+}
+
+<div class="bg-dark text-light p-4">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="text-warning fw-bold">
+                <i class="bi bi-trophy-fill"></i> @Model.TournamentName - Matches
+            </h1>
+            <a asp-controller="Tournament" asp-action="Index" class="btn btn-outline-light fw-bold">
+                <i class="bi bi-arrow-left"></i> Back to Tournaments
+            </a>
+        </div>
+
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3" id="matchesContainer">
+            @foreach (var match in Model.Matches)
+            {
+                <div class="col">
+                    <div class="card shadow-lg border-0 rounded-3 bg-secondary text-light h-100">
+                        <div class="card-body text-center p-3">
+                            <h6 class="fw-bold text-warning">@match.Title</h6>
+                            <p class="small mb-1">
+                                <i class="bi bi-geo-alt"></i> @match.Region
+                            </p>
+                            <p class="small text-muted">
+                                <i class="bi bi-calendar-event"></i>
+                                @match.MatchDate.ToString("dd MMM yyyy, HH:mm")
+                            </p>
+                            <p class="small text-muted">
+                                <i class="bi bi-person"></i> Organizer: @Model.OrganizerName
+                            </p>
+                            <p class="small">
+                                Available Slots: <strong>@match.AvailableSlots</strong>
+                            </p>
+
+                            <div class="d-flex flex-column gap-2 mt-2">
+                                @if (!string.IsNullOrEmpty(match.VODUrl))
+                                {
+                                    <a href="@match.VODUrl" target="_blank"
+                                       class="btn btn-outline-warning btn-sm rounded-pill">
+                                        <i class="bi bi-play-circle"></i> Watch VOD
+                                    </a>
+                                }
+
+                                @if (User.Identity is { IsAuthenticated: true } && !User.IsInRole("Admin"))
+                                {
+                                    <a asp-controller="Ticket" asp-action="Buy"
+                                       asp-route-matchId="@match.Id"
+                                       class="btn btn-success btn-sm rounded-pill">
+                                        <i class="bi bi-ticket-perforated"></i> Buy Ticket
+                                    </a>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
