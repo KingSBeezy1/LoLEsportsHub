@@ -57,8 +57,8 @@ namespace LoLEsportsHub.Data.Configuration
             entity
                 .HasQueryFilter(m => m.IsDeleted == false);
 
-            //entity
-                //.HasData(this.SeedMatches());
+            entity
+                .HasData(this.SeedMatches());
         }
 
         private IEnumerable<Match> SeedMatches()
