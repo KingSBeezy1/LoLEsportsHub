@@ -2,7 +2,7 @@
 
 @{
     ViewData["Title"] = "Add New Match";
- }
+}
 <div class="container mt-5">
     <h2 class="text-center text-warning fw-bold display-5">🎮 Add a New Match</h2>
     <hr class="mb-5 border-warning">
@@ -33,7 +33,7 @@
                     <label asp-for="ScheduledDate" class="form-label fw-semibold text-warning">Scheduled Date</label>
                     <div class="input-group">
                         <span class="input-group-text bg-secondary text-light"><i class="bi bi-calendar-event"></i></span>
-                        <input asp-for="ScheduledDate" class="form-control" type="date">
+                        <input asp-for="ScheduledDate" class="form-control" type="datetime-local">
                     </div>
                     <span asp-validation-for="ScheduledDate" class="text-danger small"></span>
                 </div>

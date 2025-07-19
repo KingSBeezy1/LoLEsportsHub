@@ -1,6 +1,12 @@
 using LoLEsportsHub.Data;
+using LoLEsportsHub.Services.Core;
+using LoLEsportsHub.Services.Core.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+
+using LoLEsportsHub.Web.Infrastructure.Extensions;
+using LoLEsportsHub.Data.Repository.Interfaces;
+using LoLEsportsHub.Data.Repository;
 
 namespace LoLEsportsHub
 {
@@ -24,6 +30,10 @@ namespace LoLEsportsHub
 
             builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<LoLEsportsHubDbContext>();
+
+            builder.Services.AddRepositories(typeof(IMatchRepository).Assembly);
+            builder.Services.AddUserDefinedServices(typeof(IMatchService).Assembly);
+            
             builder.Services.AddControllersWithViews();
 
             var app = builder.Build();

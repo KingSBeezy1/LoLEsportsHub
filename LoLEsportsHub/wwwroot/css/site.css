@@ -7,6 +7,9 @@ html {
     font-size: 16px;
   }
 }
+header{
+    color: blue
+}
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
   box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
@@ -17,6 +20,15 @@ html {
   min-height: 100%;
 }
 
+body, html {
+    height: 100%;
+    margin: 0;
+}
+
 body {
-  margin-bottom: 60px;
+    background-image: url('/images/background.jpg'); /* or your actual image path */
+    background-size: cover; /* Cover entire area */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent tiling */
+    background-attachment: fixed; /* Optional: fixed when scrolling */
 }

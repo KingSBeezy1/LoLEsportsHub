@@ -1,0 +1,52 @@
+﻿@using LoLEsportsHub.Web.ViewModels.Match
+@model LoLEsportsHub.Web.ViewModels.Match.MatchFormInputModel
+
+<div class="container mt-5">
+    <div class="card shadow-lg border-0 bg-dark text-light rounded-4 p-4">
+        <div class="card-body">
+            <h2 class="text-warning fw-bold mb-4">
+                <i class="bi bi-pencil-square"></i> Edit Match
+            </h2>
+            <hr class="border-secondary">
+
+            <form asp-action="Edit" method="post" class="needs-validation" novalidate>
+                <input type="hidden" asp-for="Id" />
+
+                <div class="mb-3">
+                    <label asp-for="Title" class="form-label text-light fw-bold"></label>
+                    <input asp-for="Title" class="form-control bg-secondary text-light border-0" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Region" class="form-label text-light fw-bold"></label>
+                    <input asp-for="Region" class="form-control bg-secondary text-light border-0" />
+                    <span asp-validation-for="Region" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="ScheduledDate" class="form-label text-light fw-bold"></label>
+                    <input asp-for="ScheduledDate" type="datetime-local" class="form-control bg-secondary text-light border-0" />
+                    <span asp-validation-for="ScheduledDate" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="VodUrl" class="form-label text-light fw-bold">VOD URL</label>
+                    <input asp-for="VodUrl" class="form-control bg-secondary text-light border-0" />
+                    <span asp-validation-for="VodUrl" class="text-danger"></span>
+                </div>
+
+                <button type="submit" class="btn btn-warning fw-bold me-2">
+                    <i class="bi bi-save"></i> Save Changes
+                </button>
+                <a asp-action="Index" class="btn btn-outline-light fw-bold">
+                    <i class="bi bi-arrow-left"></i> Cancel
+                </a>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
