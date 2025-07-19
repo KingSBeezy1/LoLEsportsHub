@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LoLEsportsHub.Data.Migrations
 {
     [DbContext(typeof(LoLEsportsHubDbContext))]
-    [Migration("20250718150313_InitialDbSeed")]
-    partial class InitialDbSeed
+    [Migration("20250719144324_InitialDbCreate")]
+    partial class InitialDbCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -79,48 +79,6 @@ namespace LoLEsportsHub.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Matches");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("a1d6219f-9f49-4f29-a2ea-d3c302781b01"),
-                            IsDeleted = false,
-                            MatchDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Region = "EU",
-                            Title = "G2 vs Fnatic - Spring Finals"
-                        },
-                        new
-                        {
-                            Id = new Guid("b2e732af-82f2-4ab2-9cd5-47f2a2ffcf32"),
-                            IsDeleted = false,
-                            MatchDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Region = "KR",
-                            Title = "T1 vs Gen.G - LCK Clash"
-                        },
-                        new
-                        {
-                            Id = new Guid("c3f843cb-14c6-412e-9912-3290a28f31c5"),
-                            IsDeleted = false,
-                            MatchDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Region = "NA",
-                            Title = "Cloud9 vs TL - LCS Championship"
-                        },
-                        new
-                        {
-                            Id = new Guid("d4a9347d-b5b1-4014-9d92-4a2f9dfc1a94"),
-                            IsDeleted = false,
-                            MatchDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Region = "PCS",
-                            Title = "PSG Talon vs Beyond - PCS Showdown"
-                        },
-                        new
-                        {
-                            Id = new Guid("e5b0453a-6d9c-48e3-a83d-f5ab2db2b906"),
-                            IsDeleted = false,
-                            MatchDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Region = "VCS",
-                            Title = "GAM vs Team Whales - VCS Grand Finals"
-                        });
                 });
 
             modelBuilder.Entity("LoLEsportsHub.Data.Models.Organizer", b =>
@@ -205,36 +163,6 @@ namespace LoLEsportsHub.Data.Migrations
                         .IsUnique();
 
                     b.ToTable("Tournaments");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("11111111-aaaa-aaaa-aaaa-111111111111"),
-                            IsDeleted = false,
-                            Name = "MSI 2025",
-                            Region = "Global"
-                        },
-                        new
-                        {
-                            Id = new Guid("22222222-bbbb-bbbb-bbbb-222222222222"),
-                            IsDeleted = false,
-                            Name = "LEC Summer Split",
-                            Region = "EU"
-                        },
-                        new
-                        {
-                            Id = new Guid("33333333-cccc-cccc-cccc-333333333333"),
-                            IsDeleted = false,
-                            Name = "LCK Spring Playoffs",
-                            Region = "KR"
-                        },
-                        new
-                        {
-                            Id = new Guid("44444444-dddd-dddd-dddd-444444444444"),
-                            IsDeleted = false,
-                            Name = "VCS Winter Finals",
-                            Region = "VN"
-                        });
                 });
 
             modelBuilder.Entity("LoLEsportsHub.Data.Models.TournamentMatch", b =>
@@ -272,26 +200,6 @@ namespace LoLEsportsHub.Data.Migrations
                         .IsUnique();
 
                     b.ToTable("TournamentsMatches");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("fa2be4a6-c170-4ec4-b8c1-f4bc6fd8ee7f"),
-                            AvailableSlots = 0,
-                            IsDeleted = false,
-                            MatchId = new Guid("a1d6219f-9f49-4f29-a2ea-d3c302781b01"),
-                            ScheduledTime = "2025-05-02 18:00",
-                            TournamentId = new Guid("f6c156e3-a5b7-4cf9-98c2-6577b8b6fa61")
-                        },
-                        new
-                        {
-                            Id = new Guid("e3a83cb3-df47-492e-b4f0-4a3cfe9d3a6c"),
-                            AvailableSlots = 0,
-                            IsDeleted = false,
-                            MatchId = new Guid("b2e732af-82f2-4ab2-9cd5-47f2a2ffcf32"),
-                            ScheduledTime = "2025-10-10 20:00",
-                            TournamentId = new Guid("bcb29915-27de-45ea-8c29-0e4c8ff6d703")
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -559,7 +467,7 @@ namespace LoLEsportsHub.Data.Migrations
                 {
                     b.HasOne("LoLEsportsHub.Data.Models.Match", "Match")
                         .WithMany("Tournaments")
-                        .HasForeignKey("TournamentId")
+                        .HasForeignKey("MatchId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 

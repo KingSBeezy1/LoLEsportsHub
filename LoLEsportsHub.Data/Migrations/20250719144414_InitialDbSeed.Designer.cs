@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LoLEsportsHub.Data.Migrations
 {
     [DbContext(typeof(LoLEsportsHubDbContext))]
-    [Migration("20250718145232_InitialDbCreate")]
-    partial class InitialDbCreate
+    [Migration("20250719144414_InitialDbSeed")]
+    partial class InitialDbSeed
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -79,6 +79,128 @@ namespace LoLEsportsHub.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Matches");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("a1d6219f-9f49-4f29-a2ea-d3c302781b01"),
+                            IsDeleted = false,
+                            MatchDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Region = "EU",
+                            Title = "G2 vs Fnatic - Spring Finals"
+                        },
+                        new
+                        {
+                            Id = new Guid("b2e732af-82f2-4ab2-9cd5-47f2a2ffcf32"),
+                            IsDeleted = false,
+                            MatchDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Region = "KR",
+                            Title = "T1 vs Gen.G - LCK Clash"
+                        },
+                        new
+                        {
+                            Id = new Guid("c3f843cb-14c6-412e-9912-3290a28f31c5"),
+                            IsDeleted = false,
+                            MatchDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Region = "NA",
+                            Title = "Cloud9 vs TL - LCS Championship"
+                        },
+                        new
+                        {
+                            Id = new Guid("d4a9347d-b5b1-4014-9d92-4a2f9dfc1a94"),
+                            IsDeleted = false,
+                            MatchDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Region = "PCS",
+                            Title = "PSG Talon vs Beyond - PCS Showdown"
+                        },
+                        new
+                        {
+                            Id = new Guid("e5b0453a-6d9c-48e3-a83d-f5ab2db2b906"),
+                            IsDeleted = false,
+                            MatchDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Region = "VCS",
+                            Title = "GAM vs Team Whales - VCS Grand Finals"
+                        },
+                        new
+                        {
+                            Id = new Guid("f6c156e3-a5b7-4cf9-98c2-6577b8b6fa61"),
+                            IsDeleted = false,
+                            MatchDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Region = "LPL",
+                            Title = "JD Gaming vs Bilibili - LPL Semifinals"
+                        },
+                        new
+                        {
+                            Id = new Guid("aa111111-1111-1111-1111-aaaaaaaaaaaa"),
+                            IsDeleted = false,
+                            MatchDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Region = "LPL",
+                            Title = "TES vs RNG - LPL Playoffs"
+                        },
+                        new
+                        {
+                            Id = new Guid("bb222222-2222-2222-2222-bbbbbbbbbbbb"),
+                            IsDeleted = false,
+                            MatchDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Region = "KR",
+                            Title = "DRX vs KT Rolster - LCK Quarters"
+                        },
+                        new
+                        {
+                            Id = new Guid("cc333333-3333-3333-3333-cccccccccccc"),
+                            IsDeleted = false,
+                            MatchDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Region = "NA",
+                            Title = "Evil Geniuses vs 100 Thieves - LCS Semifinals"
+                        },
+                        new
+                        {
+                            Id = new Guid("dd444444-4444-4444-4444-dddddddddddd"),
+                            IsDeleted = false,
+                            MatchDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Region = "EU",
+                            Title = "MAD Lions vs Rogue - LEC Semifinals"
+                        },
+                        new
+                        {
+                            Id = new Guid("ee555555-5555-5555-5555-eeeeeeeeeeee"),
+                            IsDeleted = false,
+                            MatchDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Region = "LJL",
+                            Title = "DetonatioN FM vs Crest Gaming - LJL Finals"
+                        },
+                        new
+                        {
+                            Id = new Guid("ff666666-6666-6666-6666-ffffffffffff"),
+                            IsDeleted = false,
+                            MatchDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Region = "LLA",
+                            Title = "Isurus vs Estral Esports - LLA Finals"
+                        },
+                        new
+                        {
+                            Id = new Guid("11111111-aaaa-bbbb-cccc-111111111111"),
+                            IsDeleted = false,
+                            MatchDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Region = "LCO",
+                            Title = "Chiefs vs Pentanet.GG - LCO Finals"
+                        },
+                        new
+                        {
+                            Id = new Guid("22222222-bbbb-cccc-dddd-222222222222"),
+                            IsDeleted = false,
+                            MatchDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Region = "CBLOL",
+                            Title = "LOUD vs paiN Gaming - CBLOL Finals"
+                        },
+                        new
+                        {
+                            Id = new Guid("33333333-cccc-dddd-eeee-333333333333"),
+                            IsDeleted = false,
+                            MatchDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Region = "CBLOL",
+                            Title = "KaBuM vs RED Canids - CBLOL Semifinals"
+                        });
                 });
 
             modelBuilder.Entity("LoLEsportsHub.Data.Models.Organizer", b =>
@@ -163,6 +285,78 @@ namespace LoLEsportsHub.Data.Migrations
                         .IsUnique();
 
                     b.ToTable("Tournaments");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("11111111-aaaa-aaaa-aaaa-111111111111"),
+                            IsDeleted = false,
+                            Name = "MSI 2025",
+                            Region = "Global"
+                        },
+                        new
+                        {
+                            Id = new Guid("22222222-bbbb-bbbb-bbbb-222222222222"),
+                            IsDeleted = false,
+                            Name = "LEC Summer Split",
+                            Region = "EU"
+                        },
+                        new
+                        {
+                            Id = new Guid("33333333-cccc-cccc-cccc-333333333333"),
+                            IsDeleted = false,
+                            Name = "LCK Spring Playoffs",
+                            Region = "KR"
+                        },
+                        new
+                        {
+                            Id = new Guid("44444444-dddd-dddd-dddd-444444444444"),
+                            IsDeleted = false,
+                            Name = "VCS Winter Finals",
+                            Region = "VCS"
+                        },
+                        new
+                        {
+                            Id = new Guid("55555555-eeee-eeee-eeee-555555555555"),
+                            IsDeleted = false,
+                            Name = "LCS Summer Championship",
+                            Region = "NA"
+                        },
+                        new
+                        {
+                            Id = new Guid("66666666-ffff-ffff-ffff-666666666666"),
+                            IsDeleted = false,
+                            Name = "Worlds 2025",
+                            Region = "Global"
+                        },
+                        new
+                        {
+                            Id = new Guid("77777777-aaaa-bbbb-cccc-777777777777"),
+                            IsDeleted = false,
+                            Name = "LPL Summer Playoffs",
+                            Region = "LPL"
+                        },
+                        new
+                        {
+                            Id = new Guid("88888888-bbbb-cccc-dddd-888888888888"),
+                            IsDeleted = false,
+                            Name = "CBLOL Winter Finals",
+                            Region = "CBLOL"
+                        },
+                        new
+                        {
+                            Id = new Guid("99999999-cccc-dddd-eeee-999999999999"),
+                            IsDeleted = false,
+                            Name = "PCS Summer Split",
+                            Region = "PCS"
+                        },
+                        new
+                        {
+                            Id = new Guid("aaaaaaaa-dddd-eeee-ffff-aaaaaaaaaaaa"),
+                            IsDeleted = false,
+                            Name = "LLA Apertura Playoffs",
+                            Region = "LLA"
+                        });
                 });
 
             modelBuilder.Entity("LoLEsportsHub.Data.Models.TournamentMatch", b =>
@@ -200,6 +394,98 @@ namespace LoLEsportsHub.Data.Migrations
                         .IsUnique();
 
                     b.ToTable("TournamentsMatches");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("fa2be4a6-c170-4ec4-b8c1-f4bc6fd8ee7f"),
+                            AvailableSlots = 0,
+                            IsDeleted = false,
+                            MatchId = new Guid("a1d6219f-9f49-4f29-a2ea-d3c302781b01"),
+                            ScheduledTime = "2025-05-02 18:00",
+                            TournamentId = new Guid("11111111-aaaa-aaaa-aaaa-111111111111")
+                        },
+                        new
+                        {
+                            Id = new Guid("e3a83cb3-df47-492e-b4f0-4a3cfe9d3a6c"),
+                            AvailableSlots = 0,
+                            IsDeleted = false,
+                            MatchId = new Guid("b2e732af-82f2-4ab2-9cd5-47f2a2ffcf32"),
+                            ScheduledTime = "2025-10-10 20:00",
+                            TournamentId = new Guid("66666666-ffff-ffff-ffff-666666666666")
+                        },
+                        new
+                        {
+                            Id = new Guid("11111111-2222-3333-4444-555555555555"),
+                            AvailableSlots = 0,
+                            IsDeleted = false,
+                            MatchId = new Guid("dd444444-4444-4444-4444-dddddddddddd"),
+                            ScheduledTime = "2025-07-15 17:00",
+                            TournamentId = new Guid("22222222-bbbb-bbbb-bbbb-222222222222")
+                        },
+                        new
+                        {
+                            Id = new Guid("22222222-3333-4444-5555-666666666666"),
+                            AvailableSlots = 0,
+                            IsDeleted = false,
+                            MatchId = new Guid("bb222222-2222-2222-2222-bbbbbbbbbbbb"),
+                            ScheduledTime = "2025-04-12 16:30",
+                            TournamentId = new Guid("33333333-cccc-cccc-cccc-333333333333")
+                        },
+                        new
+                        {
+                            Id = new Guid("33333333-4444-5555-6666-777777777777"),
+                            AvailableSlots = 0,
+                            IsDeleted = false,
+                            MatchId = new Guid("cc333333-3333-3333-3333-cccccccccccc"),
+                            ScheduledTime = "2025-08-08 19:00",
+                            TournamentId = new Guid("55555555-eeee-eeee-eeee-555555555555")
+                        },
+                        new
+                        {
+                            Id = new Guid("44444444-5555-6666-7777-888888888888"),
+                            AvailableSlots = 0,
+                            IsDeleted = false,
+                            MatchId = new Guid("aa111111-1111-1111-1111-aaaaaaaaaaaa"),
+                            ScheduledTime = "2025-09-01 14:00",
+                            TournamentId = new Guid("77777777-aaaa-bbbb-cccc-777777777777")
+                        },
+                        new
+                        {
+                            Id = new Guid("55555555-6666-7777-8888-999999999999"),
+                            AvailableSlots = 0,
+                            IsDeleted = false,
+                            MatchId = new Guid("22222222-bbbb-cccc-dddd-222222222222"),
+                            ScheduledTime = "2025-06-21 18:00",
+                            TournamentId = new Guid("88888888-bbbb-cccc-dddd-888888888888")
+                        },
+                        new
+                        {
+                            Id = new Guid("66666666-7777-8888-9999-aaaaaaaaaaaa"),
+                            AvailableSlots = 0,
+                            IsDeleted = false,
+                            MatchId = new Guid("d4a9347d-b5b1-4014-9d92-4a2f9dfc1a94"),
+                            ScheduledTime = "2025-03-19 12:00",
+                            TournamentId = new Guid("99999999-cccc-dddd-eeee-999999999999")
+                        },
+                        new
+                        {
+                            Id = new Guid("77777777-8888-9999-aaaa-bbbbbbbbbbbb"),
+                            AvailableSlots = 0,
+                            IsDeleted = false,
+                            MatchId = new Guid("ff666666-6666-6666-6666-ffffffffffff"),
+                            ScheduledTime = "2025-05-05 21:00",
+                            TournamentId = new Guid("aaaaaaaa-dddd-eeee-ffff-aaaaaaaaaaaa")
+                        },
+                        new
+                        {
+                            Id = new Guid("88888888-9999-aaaa-bbbb-cccccccccccc"),
+                            AvailableSlots = 0,
+                            IsDeleted = false,
+                            MatchId = new Guid("e5b0453a-6d9c-48e3-a83d-f5ab2db2b906"),
+                            ScheduledTime = "2025-04-02 15:30",
+                            TournamentId = new Guid("44444444-dddd-dddd-dddd-444444444444")
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -467,7 +753,7 @@ namespace LoLEsportsHub.Data.Migrations
                 {
                     b.HasOne("LoLEsportsHub.Data.Models.Match", "Match")
                         .WithMany("Tournaments")
-                        .HasForeignKey("TournamentId")
+                        .HasForeignKey("MatchId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 

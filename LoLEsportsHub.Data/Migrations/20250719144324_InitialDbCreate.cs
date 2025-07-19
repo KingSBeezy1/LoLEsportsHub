@@ -253,8 +253,8 @@ namespace LoLEsportsHub.Data.Migrations
                 {
                     table.PrimaryKey("PK_TournamentsMatches", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_TournamentsMatches_Matches_TournamentId",
-                        column: x => x.TournamentId,
+                        name: "FK_TournamentsMatches_Matches_MatchId",
+                        column: x => x.MatchId,
                         principalTable: "Matches",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
