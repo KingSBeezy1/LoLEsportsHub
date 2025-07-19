@@ -1,0 +1,61 @@
+﻿@model LoLEsportsHub.Web.ViewModels.Match.MatchFormInputModel
+
+@{
+    ViewData["Title"] = "Add New Match";
+ }
+<div class="container mt-5">
+    <h2 class="text-center text-warning fw-bold display-5">🎮 Add a New Match</h2>
+    <hr class="mb-5 border-warning">
+
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <form asp-controller="Match" asp-action="Add" method="post" class="bg-dark text-light p-5 rounded-4 shadow-lg border border-secondary">
+
+                <div class="mb-4">
+                    <label asp-for="Title" class="form-label fw-semibold text-warning">Match Title</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-secondary text-light"><i class="bi bi-controller"></i></span>
+                        <input asp-for="Title" class="form-control" placeholder="e.g. T1 vs G2 - Finals">
+                    </div>
+                    <span asp-validation-for="Title" class="text-danger small"></span>
+                </div>
+
+                <div class="mb-4">
+                    <label asp-for="Region" class="form-label fw-semibold text-warning">Region</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-secondary text-light"><i class="bi bi-globe"></i></span>
+                        <input asp-for="Region" class="form-control" placeholder="e.g. LEC, LCK, NA">
+                    </div>
+                    <span asp-validation-for="Region" class="text-danger small"></span>
+                </div>
+
+                <div class="mb-4">
+                    <label asp-for="ScheduledDate" class="form-label fw-semibold text-warning">Scheduled Date</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-secondary text-light"><i class="bi bi-calendar-event"></i></span>
+                        <input asp-for="ScheduledDate" class="form-control" type="date">
+                    </div>
+                    <span asp-validation-for="ScheduledDate" class="text-danger small"></span>
+                </div>
+
+                <div class="mb-4">
+                    <label asp-for="VodUrl" class="form-label fw-semibold text-warning">Vod URL (optional)</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-secondary text-light"><i class="bi bi-play-circle"></i></span>
+                        <input asp-for="VodUrl" class="form-control" placeholder="e.g. https://youtube.com/watch?v=...">
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-center gap-3 mt-4">
+                    <button type="submit" class="btn btn-success fw-bold px-4 shadow">
+                        <i class="bi bi-plus-circle me-1"></i> Add Match
+                    </button>
+                    <a asp-action="Index" class="btn btn-outline-light fw-semibold px-4">
+                        <i class="bi bi-arrow-left"></i> Back to List
+                    </a>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
