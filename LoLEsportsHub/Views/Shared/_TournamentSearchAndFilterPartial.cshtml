@@ -1,0 +1,22 @@
+﻿@model IEnumerable<string>
+
+<div class="row mb-4">
+    <div class="col-md-6">
+        <input type="text"
+               id="searchBar"
+               class="form-control shadow-sm"
+               placeholder="Search for a tournament..."
+               onkeyup="filterTournaments()" />
+    </div>
+    <div class="col-md-6">
+        <select id="cityFilter"
+                class="form-select shadow-sm"
+                onchange="filterTournaments()">
+            <option value="">All Regions</option>
+            @foreach (var region in Model)
+            {
+                <option value="@region">@region</option>
+            }
+        </select>
+    </div>
+</div>

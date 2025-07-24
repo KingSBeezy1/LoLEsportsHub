@@ -38,10 +38,13 @@
                        class="btn btn-warning btn-sm fw-bold">
                         Details
                     </a>
+                    @if (User.IsInRole("Admin"))
+                                {
                     <a asp-controller="Match" asp-action="Edit" asp-route-id="@match.Id"
                        class="btn btn-warning btn-sm fw-bold">
                         Edit
                     </a>
+                                }
                     
                 </div>
             </div>

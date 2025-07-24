@@ -24,7 +24,7 @@
     <partial name="_TournamentSearchAndFilterPartial" model="tournamentRegions" />
 
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3" id="tournamentContainer">
-        @foreach (UsersTournamentIndexViewModel tournament in Model.Take(8))
+        @foreach (UsersTournamentIndexViewModel tournament in Model)
         {
             <div class="col tournament-card" data-region="@tournament.Region.ToLower()">
                 <div class="card shadow-lg border-0 rounded-3 bg-dark text-light h-100">

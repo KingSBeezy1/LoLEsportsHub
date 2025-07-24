@@ -30,12 +30,9 @@
                             <p class="small mb-1">
                                 <i class="bi bi-geo-alt"></i> @match.Region
                             </p>
-                            <p class="small text-muted">
+                            <p class="small">
                                 <i class="bi bi-calendar-event"></i>
                                 @match.MatchDate.ToString("dd MMM yyyy, HH:mm")
-                            </p>
-                            <p class="small text-muted">
-                                <i class="bi bi-person"></i> Organizer: @Model.OrganizerName
                             </p>
                             <p class="small">
                                 Available Slots: <strong>@match.AvailableSlots</strong>
@@ -66,3 +63,4 @@
         </div>
     </div>
 </div>
+<partial name="_BuyTicketModalPartial" />
