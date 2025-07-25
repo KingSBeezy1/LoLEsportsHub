@@ -1,22 +1,35 @@
-using System.Diagnostics;
 using LoLEsportsHub.Models;
+using LoLEsportsHub.Services.Core;
+using LoLEsportsHub.Services.Core.Interfaces;
+using LoLEsportsHub.Web.ViewModels.Home;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
 
 namespace LoLEsportsHub.Controllers
 {
     public class HomeController : BaseController
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IHomeService _homeService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IHomeService homeService)
         {
             _logger = logger;
+            _homeService = homeService;
         }
         [AllowAnonymous]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var trendingTournaments = await _homeService
+                .GetTrendingTournamentsAsync();
+
+            var model = new HomePageViewModel
+            {
+                TrendingTournaments = trendingTournaments
+            };
+
+            return View(model);
         }
 
         public IActionResult Privacy()
