@@ -2,58 +2,69 @@
 @model TournamentBracketViewModel
 
 @{
-    ViewData["Title"] = $"{Model.TournamentName} - Matches";
+    ViewData["Title"] = "Tournament Program";
 }
 
 @section Styles {
-    <link rel="stylesheet" href="~/css/user.css">
+    <link rel="stylesheet" href="~/css/user.css" />
 }
 
-<div class="bg-dark text-light p-4">
+<div class="bg-dark text-light py-4">
     <div class="container">
         <div class="d-flex justify-content-between align-items-center mb-4">
-            <h1 class="text-warning fw-bold">
-                <i class="bi bi-trophy-fill"></i> @Model.TournamentName - Matches
+            <h1 class="fw-bold text-light">
+                @Model.TournamentName
+                <small class="text-muted fs-5">by @Model.OrganizerName</small>
             </h1>
+
             <a asp-controller="Tournament" asp-action="Index" class="btn btn-outline-light fw-bold">
                 <i class="bi bi-arrow-left"></i> Back to Tournaments
             </a>
         </div>
 
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3" id="matchesContainer">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
             @foreach (var match in Model.Matches)
             {
                 <div class="col">
-                    <div class="card shadow-lg border-0 rounded-3 bg-secondary text-light h-100">
-                        <div class="card-body text-center p-3">
-                            <h6 class="fw-bold text-warning">@match.Title</h6>
-                            <p class="small mb-1">
-                                <i class="bi bi-geo-alt"></i> @match.Region
+                    <div class="card h-100 shadow-sm border-0 rounded-3 p-3"
+                         style="background-color: #1e1e2f;">
+
+                        <div class="card-body text-light text-center">
+                            <h5 class="card-title text-info fw-bold">@match.Title</h5>
+                            <p class="card-text text-muted small mb-1">
+                                <strong>Region:</strong> @match.Region
                             </p>
-                            <p class="small">
-                                <i class="bi bi-calendar-event"></i>
-                                @match.MatchDate.ToString("dd MMM yyyy, HH:mm")
+                            <p class="card-text text-muted small mb-1">
+                                <strong>Match Date:</strong> @match.MatchDate.ToString("yyyy-MM-dd HH:mm")
                             </p>
-                            <p class="small">
-                                Available Slots: <strong>@match.AvailableSlots</strong>
+                            <p class="card-text small mb-3">
+                                <strong>Available Slots:</strong> @match.AvailableSlots
                             </p>
 
-                            <div class="d-flex flex-column gap-2 mt-2">
+                            <div class="d-flex flex-column gap-2">
+                                <a asp-controller="Matches"
+                                   asp-action="Details"
+                                   asp-route-id="@match.Id"
+                                   class="btn btn-outline-info rounded-pill fw-bold">
+                                    <i class="fas fa-info-circle"></i> Match Details
+                                </a>
+
                                 @if (!string.IsNullOrEmpty(match.VODUrl))
                                 {
-                                    <a href="@match.VODUrl" target="_blank"
-                                       class="btn btn-outline-warning btn-sm rounded-pill">
-                                        <i class="bi bi-play-circle"></i> Watch VOD
+                                    <a href="@match.VODUrl"
+                                       target="_blank"
+                                       class="btn btn-outline-primary rounded-pill fw-bold">
+                                        <i class="fas fa-play-circle"></i> Watch VOD
                                     </a>
                                 }
 
-                                @if (User.Identity is { IsAuthenticated: true } && !User.IsInRole("Admin"))
+                                @if (User.Identity is { IsAuthenticated: true } && !User.IsInRole("Organizer"))
                                 {
-                                    <a asp-controller="Ticket" asp-action="Buy"
-                                       asp-route-matchId="@match.Id"
-                                       class="btn btn-success btn-sm rounded-pill">
-                                        <i class="bi bi-ticket-perforated"></i> Buy Ticket
-                                    </a>
+                                    <button class="btn btn-success rounded-pill fw-bold buy-ticket-btn"
+                                            data-match-id="@match.Id"
+                                            data-match-title="@match.Title">
+                                        <i class="fas fa-ticket-alt"></i> Buy Ticket
+                                    </button>
                                 }
                             </div>
                         </div>
@@ -63,4 +74,6 @@
         </div>
     </div>
 </div>
+
+
 <partial name="_BuyTicketModalPartial" />

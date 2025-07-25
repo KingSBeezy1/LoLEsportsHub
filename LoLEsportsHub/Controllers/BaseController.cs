@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
 namespace LoLEsportsHub.Controllers
 {
+    [Authorize]
     public class BaseController : Controller
     {
         protected bool IsUserAuthenticated()

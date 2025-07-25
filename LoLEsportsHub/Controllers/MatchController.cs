@@ -9,17 +9,28 @@ namespace LoLEsportsHub.Controllers
     public class MatchController : BaseController
     {
         private readonly IMatchService _matchService;
+        private readonly IBookmarkService _bookmarkService;
 
-        public MatchController(IMatchService matchService)
+        public MatchController(IMatchService matchService, IBookmarkService bookmarkService)
         {
             this._matchService = matchService;
+            _bookmarkService = bookmarkService;
         }
         [HttpGet]
         [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
-            var matches = await _matchService.GetAllMatchesAsync();
-            return View(matches);
+            IEnumerable<AllMatchesIndexViewModel> allMatches = await _matchService.GetAllMatchesAsync();
+
+            if (this.IsUserAuthenticated())
+            {
+                foreach (AllMatchesIndexViewModel matchesIndexVM in allMatches)
+                {
+                    matchesIndexVM.IsAddedToUserBookmarks = await this._bookmarkService
+                        .IsMatchAddedToBookmarks(matchesIndexVM.Id, this.GetUserId());
+                }
+            }
+            return View(allMatches);
         }
 
         [HttpGet]
@@ -53,6 +64,7 @@ namespace LoLEsportsHub.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> Details(string? id)
         {
             try
@@ -77,6 +89,27 @@ namespace LoLEsportsHub.Controllers
 
         [HttpGet]
         [AllowAnonymous]
+        public async Task<IActionResult> DetailsPartial(string? id)
+        {
+            try
+            {
+                MatchDetailsViewModel? matchDetails = await this._matchService
+                    .GetMatchDetailsByIdAsync(id);
+                if (matchDetails == null)
+                {
+                    return this.RedirectToAction(nameof(Index));
+                }
+
+                return this.View("_MatchDetailsPartial", matchDetails);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        [HttpGet]
         public async Task<IActionResult> Edit(string? id)
         {
             try

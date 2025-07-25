@@ -45,7 +45,30 @@
                         Edit
                     </a>
                                 }
-                    
+
+                    @if (User?.Identity?.IsAuthenticated ?? false)
+                    {
+                        @if (match.IsAddedToUserBookmarks)
+                        {
+                            <form asp-controller="Bookmarks" asp-action="Remove" method="post" class="d-inline">
+                                <input type="hidden" name="matchId" value="@match.Id" />
+                                <button type="submit" class="btn btn-danger btn-sm rounded-pill px-4 fw-bold">
+                                    <i class="bi bi-file-x"></i> Remove from Bookmarks
+                                </button>
+                            </form>
+                        }
+                        else
+                        {
+                            <form asp-controller="Bookmarks" asp-action="Add" method="post" class="d-inline">
+                                <input type="hidden" name="matchId" value="@match.Id" />
+                                <button type="submit" class="btn btn-warning btn-sm rounded-pill px-4 fw-bold">
+                                    <i class="bi bi-bookmark-star"></i> Add to Bookmarks
+                                </button>
+                            </form>
+                        }
+
+                    }
+
                 </div>
             </div>
         </div>

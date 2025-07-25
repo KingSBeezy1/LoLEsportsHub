@@ -1,0 +1,67 @@
+﻿@using LoLEsportsHub.Web.ViewModels.Bookmarks
+@model IEnumerable<BookmarkViewModel>
+
+@{
+    ViewData["Title"] = "My Bookmarked Matches";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1 class="text-white fw-bold">My Bookmarked Matches</h1>
+        <a asp-controller="Home" asp-action="Index" class="btn btn-outline-light fw-bold">
+            <i class="bi bi-arrow-left"></i> Back to Home
+        </a>
+    </div>
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-info text-center">
+            <strong>No matches bookmarked yet.</strong> Bookmark your favorite matches to find them here.
+        </div>
+    }
+    else
+    {
+        <div class="d-flex flex-column gap-3">
+            @foreach (var match in Model)
+            {
+                <div class="card shadow-sm border-0 rounded-4 d-flex flex-row align-items-center px-3 py-3"
+                     style="background-color: #1e1e2f; min-height: 130px;">
+
+                    <div class="card-body text-light d-flex flex-column justify-content-center" style="flex-grow: 1;">
+                        <h5 class="fw-bold text-info mb-1">@match.Title</h5>
+                        <p class="mb-0" style="font-size: 0.9rem;">
+                            <strong>Region:</strong> @match.Region
+                        </p>
+                        <p class="mb-0" style="font-size: 0.9rem;">
+                            <strong>Scheduled:</strong> @match.ScheduleDate
+                        </p>
+                    </div>
+
+                    <div class="d-flex flex-column gap-2 align-items-end me-2">
+                        @if (!string.IsNullOrEmpty(match.VodUrl))
+                        {
+                            <a href="@match.VodUrl" target="_blank"
+                               class="btn btn-warning fw-bold px-4 shadow-sm rounded-pill">
+                                <i class="bi bi-play-circle me-1"></i> Watch VOD
+                            </a>
+                        }
+
+                        <a asp-controller="Match"
+                           asp-action="Details"
+                           asp-route-id="@match.MatchId"
+                           class="btn btn-outline-info btn-sm rounded-pill px-3">
+                            <i class="fas fa-info-circle me-1"></i> Details
+                        </a>
+
+                        <form asp-controller="Bookmarks" asp-action="Remove" method="post" class="w-100">
+                            <input type="hidden" name="matchId" value="@match.MatchId" />
+                            <button type="submit" class="btn btn-outline-danger btn-sm rounded-pill px-3 w-100">
+                                <i class="fas fa-trash me-1"></i> Remove
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>
