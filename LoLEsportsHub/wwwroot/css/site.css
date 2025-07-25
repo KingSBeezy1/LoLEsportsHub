@@ -1,34 +1,143 @@
-html {
-  font-size: 14px;
-}
-
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-header{
-    color: blue
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
-}
 
 body, html {
-    height: 100%;
     margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #0b0c1e;
+    background-image: url('/images/background.jpg'); 
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: white;
 }
 
-body {
-    background-image: url('/images/background.jpg'); /* or your actual image path */
-    background-size: cover; /* Cover entire area */
-    background-position: center; /* Center the image */
-    background-repeat: no-repeat; /* Prevent tiling */
-    background-attachment: fixed; /* Optional: fixed when scrolling */
+.site-container {
+    backdrop-filter: blur(3px);
+    padding: 30px 15px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: bold;
+    color: #00f7ff;
+    letter-spacing: 1px;
+}
+
+p, label {
+    color: #e0e0e0;
+}
+
+.text-light {
+    color: #f1f1f1 !important;
+}
+
+.text-info {
+    color: #00f7ff !important;
+}
+
+.card {
+    background: rgba(30, 30, 30, 0.85);
+    border: 1px solid #00ffff;
+    border-radius: 16px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+}
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 0 25px #00ffff;
+    }
+
+.card-title {
+    color: #00ffff;
+}
+
+.card-text {
+    color: #cccccc;
+}
+
+.btn {
+    font-weight: bold;
+    padding: 10px 24px;
+    border-radius: 12px;
+    transition: 0.3s ease-in-out;
+}
+
+.btn-neon-primary {
+    background: linear-gradient(to right, #ff0057, #ff8a00);
+    color: #fff;
+    border: none;
+    box-shadow: 0 0 10px #ff8a00;
+}
+
+.btn-neon-secondary {
+    background: linear-gradient(to right, #00f7ff, #0070ff);
+    color: #fff;
+    border: none;
+    box-shadow: 0 0 10px #00f7ff;
+}
+
+.btn-outline-light {
+    border: 1px solid #aaa;
+    color: #f1f1f1;
+}
+
+form.bg-dark {
+    background-color: rgba(20, 20, 20, 0.95);
+    border-radius: 16px;
+    border: 1px solid #00ffff;
+    padding: 25px;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
+}
+
+input.form-control, select.form-control, textarea.form-control {
+    background-color: #1f1f2e;
+    color: #fff;
+    border: 1px solid #555;
+}
+
+    input.form-control::placeholder {
+        color: #aaa;
+    }
+
+.form-label {
+    color: #00f7ff;
+}
+
+.welcome-hero .overlay {
+    background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(10, 10, 30, 0.7));
+    padding: 100px 0;
+    text-align: center;
+}
+
+@keyframes pulse-glow {
+    0%, 100% {
+        box-shadow: 0 0 15px #00ffff, 0 0 30px #00ffff;
+    }
+
+    50% {
+        box-shadow: 0 0 25px #00ffff, 0 0 45px #00ffff;
+    }
+}
+
+.hover-glow:hover {
+    animation: pulse-glow 1.2s infinite;
+}
+
+.rounded-lg {
+    border-radius: 1rem !important;
+}
+
+.shadow-lg {
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.3) !important;
+}
+
+@media (max-width: 768px) {
+    .btn {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .card {
+        margin-bottom: 15px;
+    }
 }

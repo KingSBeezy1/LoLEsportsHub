@@ -5,25 +5,8 @@ using System.Reflection;
 
 namespace LoLEsportsHub.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-            : base(options)
-        {
-        }       
-        public virtual DbSet<ApplicationUserMatch> ApplicationUserMatches { get; set; } = null!;
-        public virtual DbSet<Match> Matches { get; set; } = null!;
-        public virtual DbSet<Organizer> Organizers { get; set; } = null!;
-        public virtual DbSet<Ticket> Tickets { get; set; } = null!;
-        public virtual DbSet<Tournament> Tournaments { get; set; } = null!;
-        public virtual DbSet<TournamentMatch> TournamentsMatches { get; set; } = null!;
-
-
-        protected override void OnModelCreating(ModelBuilder builder)
-        {
-            base.OnModelCreating(builder);
-
-            builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-        }
+       
     }
 }
