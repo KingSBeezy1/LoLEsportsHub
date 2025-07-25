@@ -6,17 +6,43 @@
 }
 
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-md-4">
-            <img src="@Model.VodUrl"
-                 class="img-fluid rounded shadow"
-                 alt="@Model.Title">
+    <div class="row align-items-center">
+        <div class="col-md-5 text-center mb-3 mb-md-0">
+            @if (!string.IsNullOrEmpty(Model.VodUrl) && (Model.VodUrl.EndsWith(".jpg") || Model.VodUrl.EndsWith(".png") || Model.VodUrl.EndsWith(".webp")))
+            {
+                <img src="@Model.VodUrl"
+                     class="img-fluid rounded shadow border"
+                     alt="@Model.Title"
+                     style="max-height: 250px; object-fit: contain;" />
+            }
+            else
+            {
+                <div class="text-muted fst-italic small">No preview image available</div>
+            }
         </div>
-        <div class="col-md-8">
-            <h3 class="fw-bold">@Model.Title</h3>
-            <p><strong>Title:</strong> @Model.Title</p>
-            <p><strong>Schedule Date:</strong> @Model.ScheduleDate</p>
-            <p><strong>Region:</strong> @Model.Region</p>
+
+        <div class="col-md-7">
+            <h3 class="fw-bold text-primary">@Model.Title</h3>
+            <hr class="border-secondary" />
+
+            <p class="mb-2">
+                <strong>Title:</strong> <span class="text-dark">@Model.Title</span>
+            </p>
+            <p class="mb-2">
+                <strong>Schedule Date:</strong>
+                <span class="text-dark">
+                    @(
+                      string.IsNullOrEmpty(Model.ScheduleDate)
+                      ? "Not scheduled"
+                      : DateTime.TryParse(Model.ScheduleDate, out var parsedDate)
+                       ? parsedDate.ToString("yyyy-MM-dd HH:mm")
+                       : "Invalid date"
+                       )
+                </span>
+            </p>
+            <p class="mb-2">
+                <strong>Region:</strong> <span class="text-dark">@Model.Region</span>
+            </p>
         </div>
     </div>
 </div>

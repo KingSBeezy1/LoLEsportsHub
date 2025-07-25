@@ -42,12 +42,12 @@
                             </p>
 
                             <div class="d-flex flex-column gap-2">
-                                <a asp-controller="Matches"
-                                   asp-action="Details"
-                                   asp-route-id="@match.Id"
-                                   class="btn btn-outline-info rounded-pill fw-bold">
+                                <!-- ✅ Modal trigger button (replaces old anchor link) -->
+                                <button type="button"
+                                        class="btn btn-outline-info rounded-pill fw-bold view-details-btn"
+                                        data-match-id="@match.Id">
                                     <i class="fas fa-info-circle"></i> Match Details
-                                </a>
+                                </button>
 
                                 @if (!string.IsNullOrEmpty(match.VODUrl))
                                 {
@@ -75,5 +75,33 @@
     </div>
 </div>
 
+<!-- ✅ Match Details Modal -->
+<div class="modal fade" id="matchDetailsModal" tabindex="-1" aria-labelledby="matchDetailsLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <div class="modal-header bg-dark text-white">
+                <h5 class="modal-title" id="matchDetailsLabel"></h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body bg-light text-dark">
+                <div id="matchDetailsContent" class="p-3"></div>
+            </div>
+
+            <div class="modal-footer bg-white">
+                @if (User.Identity is { IsAuthenticated: true } && !User.IsInRole("Admin"))
+                {
+                    <button id="add-to-bookmarks-btn" class="btn btn-warning">Add to Bookmarks</button>
+                }
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/matches.js"></script>
+}
 
 <partial name="_BuyTicketModalPartial" />
