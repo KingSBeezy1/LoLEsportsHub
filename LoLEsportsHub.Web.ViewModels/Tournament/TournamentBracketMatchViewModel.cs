@@ -8,7 +8,7 @@ namespace LoLEsportsHub.Web.ViewModels.Tournament
 {
     public class TournamentBracketMatchViewModel
     {
-        public Guid Id { get; set; }             // TournamentMatch Id or Match Id
+        public string Id { get; set; }             // TournamentMatch Id or Match Id
         public string Title { get; set; } = null!;
         public string Region { get; set; } = null!;
         public DateTime MatchDate { get; set; }

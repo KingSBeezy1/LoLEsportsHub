@@ -55,15 +55,19 @@ namespace LoLEsportsHub.Services.Core
             {
                 TournamentName = tournament.Name,
                 OrganizerName = tournament.Organizer?.User.UserName ?? "Unknown",
-                Matches = tournament.Matches.Select(tm => new TournamentBracketMatchViewModel
-                {
-                    Id = tm.MatchId,
-                    Title = tm.Match.Title,
-                    Region = tm.Match.Region,
-                    MatchDate = tm.Match.MatchDate,
-                    AvailableSlots = tm.AvailableSlots,
-                    VODUrl = tm.Match.VODUrl
-                }).ToList()
+                Matches = tournament.Matches
+                    .Select(tm => tm.Match)
+                    .DistinctBy(m => m.Id)
+                    .Select(m => new TournamentBracketMatchViewModel
+                    {
+                        Id = m.Id.ToString(),
+                        Title = m.Title,
+                        Region = m.Region,
+                        MatchDate = m.MatchDate,
+                        AvailableSlots = tournament.Matches.First(tm => tm.MatchId == m.Id).AvailableSlots,
+                        VODUrl = m.VODUrl ?? $"/images/{NoImageUrl}"
+                    })
+                    .ToList()
             };
         }
 
