@@ -27,10 +27,8 @@ namespace LoLEsportsHub.Services.Tests
             _matchRepositoryMock = new Mock<IMatchRepository>(MockBehavior.Strict);
             _matchService = new MatchService(_matchRepositoryMock.Object);
         }
-
-        #region AddMatchAsync Tests
         [Test]
-        public async Task AddMatchAsync_ShouldAddMatch_WithValidInput()
+        public async Task AddMatchAsyncShouldAddMatchWithValidInput()
         {
             var inputModel = new MatchFormInputModel
             {
@@ -55,7 +53,7 @@ namespace LoLEsportsHub.Services.Tests
         }
 
         [Test]
-        public void AddMatchAsync_ShouldThrow_WithInvalidDateFormat()
+        public void AddMatchAsyncShouldThrowWithInvalidDateFormat()
         {
             var inputModel = new MatchFormInputModel
             {
@@ -67,25 +65,23 @@ namespace LoLEsportsHub.Services.Tests
 
             Assert.ThrowsAsync<FormatException>(() => _matchService.AddMatchAsync(inputModel));
         }
-        #endregion
 
-        #region DeleteMatchAsync Tests
         [Test]
-        public async Task DeleteMatchAsync_ShouldReturnFalse_WithNullId()
+        public async Task DeleteMatchAsyncShouldReturnFalseWithNullId()
         {
             var result = await _matchService.DeleteMatchAsync(null);
             Assert.IsFalse(result);
         }
 
         [Test]
-        public async Task DeleteMatchAsync_ShouldReturnFalse_WithInvalidGuid()
+        public async Task DeleteMatchAsyncShouldReturnFalseWithInvalidGuid()
         {
             var result = await _matchService.DeleteMatchAsync("invalid-guid");
             Assert.IsFalse(result);
         }
 
         [Test]
-        public async Task DeleteMatchAsync_ShouldReturnFalse_WithNonExistingMatch()
+        public async Task DeleteMatchAsyncShouldReturnFalseWithNonExistingMatch()
         {
             var testId = Guid.NewGuid().ToString();
             _matchRepositoryMock
@@ -97,7 +93,7 @@ namespace LoLEsportsHub.Services.Tests
         }
 
         [Test]
-        public async Task DeleteMatchAsync_ShouldReturnTrue_WithExistingMatch()
+        public async Task DeleteMatchAsyncShouldReturnTrueWithExistingMatch()
         {
             var testMatch = new Match { Id = Guid.NewGuid() };
             _matchRepositoryMock
@@ -110,11 +106,8 @@ namespace LoLEsportsHub.Services.Tests
             var result = await _matchService.DeleteMatchAsync(testMatch.Id.ToString());
             Assert.IsTrue(result);
         }
-        #endregion
-
-        #region EditMatchAsync Tests
         [Test]
-        public async Task EditMatchAsync_ShouldReturnFalse_WithNullId()
+        public async Task EditMatchAsyncShouldReturnFalseWithNullId()
         {
             var inputModel = new MatchFormInputModel { Id = null };
             var result = await _matchService.EditMatchAsync(inputModel);
@@ -122,7 +115,7 @@ namespace LoLEsportsHub.Services.Tests
         }
 
         [Test]
-        public async Task EditMatchAsync_ShouldReturnFalse_WithInvalidGuid()
+        public async Task EditMatchAsyncShouldReturnFalseWithInvalidGuid()
         {
             var inputModel = new MatchFormInputModel { Id = "invalid-guid" };
             var result = await _matchService.EditMatchAsync(inputModel);
@@ -130,7 +123,7 @@ namespace LoLEsportsHub.Services.Tests
         }
 
         [Test]
-        public async Task EditMatchAsync_ShouldReturnFalse_WithNonExistingMatch()
+        public async Task EditMatchAsyncShouldReturnFalseWithNonExistingMatch()
         {
             var inputModel = new MatchFormInputModel
             {
@@ -147,7 +140,7 @@ namespace LoLEsportsHub.Services.Tests
         }
 
         [Test]
-        public async Task EditMatchAsync_ShouldReturnTrue_WithValidInput()
+        public async Task EditMatchAsyncShouldReturnTrueWithValidInput()
         {
             var existingMatch = new Match
             {
@@ -177,11 +170,8 @@ namespace LoLEsportsHub.Services.Tests
             Assert.AreEqual(inputModel.VodUrl, existingMatch.VODUrl);
             Assert.AreEqual(inputModel.ScheduledDate, existingMatch.MatchDate.ToString(AppDateFormat));
         }
-        #endregion
-
-        #region GetAllMatchesAsync Tests
         [Test]
-        public async Task GetAllMatchesAsync_ShouldReturnEmptyList_WhenNoMatchesExist()
+        public async Task GetAllMatchesAsyncShouldReturnEmptyListWhenNoMatchesExist()
         {
             var emptyList = new List<Match>()
                 .BuildMock();
@@ -194,7 +184,7 @@ namespace LoLEsportsHub.Services.Tests
         }
 
         [Test]
-        public async Task GetAllMatchesAsync_ShouldReturnMatches_WithDefaultVODUrl_WhenVODUrlIsEmpty()
+        public async Task GetAllMatchesAsyncShouldReturnMatchesWithDefaultVODUrlWhenVODUrlIsEmpty()
         {
             var matches = new List<Match>
             {
@@ -211,7 +201,7 @@ namespace LoLEsportsHub.Services.Tests
         }
 
         [Test]
-        public async Task GetAllMatchesAsync_ShouldReturnMatches_WithCorrectData()
+        public async Task GetAllMatchesAsyncShouldReturnMatchesWithCorrectData()
         {
             var testDate = DateTime.Now;
             var matches = new List<Match>
@@ -244,25 +234,22 @@ namespace LoLEsportsHub.Services.Tests
             Assert.AreEqual("NA", result[0].Region);
             Assert.AreEqual(testDate.ToString(AppDateFormat), result[0].ScheduledDate);
         }
-        #endregion
-
-        #region GetEditableMatchByIdAsync Tests
         [Test]
-        public async Task GetEditableMatchByIdAsync_ShouldReturnNull_WithNullId()
+        public async Task GetEditableMatchByIdAsyncShouldReturnNullWithNullId()
         {
             var result = await _matchService.GetEditableMatchByIdAsync(null);
             Assert.IsNull(result);
         }
 
         [Test]
-        public async Task GetEditableMatchByIdAsync_ShouldReturnNull_WithInvalidGuid()
+        public async Task GetEditableMatchByIdAsyncShouldReturnNullWithInvalidGuid()
         {
             var result = await _matchService.GetEditableMatchByIdAsync("invalid-guid");
             Assert.IsNull(result);
         }
 
         [Test]
-        public async Task GetEditableMatchByIdAsync_ShouldReturnNull_WithNonExistingMatch()
+        public async Task GetEditableMatchByIdAsyncShouldReturnNullWithNonExistingMatch()
         {
             var testId = Guid.NewGuid().ToString();
             var emptyList = new List<Match>()
@@ -276,7 +263,7 @@ namespace LoLEsportsHub.Services.Tests
         }
 
         [Test]
-        public async Task GetEditableMatchByIdAsync_ShouldReturnMatch_WithValidId()
+        public async Task GetEditableMatchByIdAsyncShouldReturnMatchWithValidId()
         {
             var testMatch = new Match
             {
@@ -297,25 +284,22 @@ namespace LoLEsportsHub.Services.Tests
             Assert.AreEqual(testMatch.Id.ToString(), result.Id);
             Assert.AreEqual(testMatch.Title, result.Title);
         }
-        #endregion
-
-        #region GetMatchDeleteDetailsByIdAsync Tests
         [Test]
-        public async Task GetMatchDeleteDetailsByIdAsync_ShouldReturnNull_WithNullId()
+        public async Task GetMatchDeleteDetailsByIdAsyncShouldReturnNullWithNullId()
         {
             var result = await _matchService.GetMatchDeleteDetailsByIdAsync(null);
             Assert.IsNull(result);
         }
 
         [Test]
-        public async Task GetMatchDeleteDetailsByIdAsync_ShouldReturnNull_WithInvalidGuid()
+        public async Task GetMatchDeleteDetailsByIdAsyncShouldReturnNullWithInvalidGuid()
         {
             var result = await _matchService.GetMatchDeleteDetailsByIdAsync("invalid-guid");
             Assert.IsNull(result);
         }
 
         [Test]
-        public async Task GetMatchDeleteDetailsByIdAsync_ShouldReturnNull_WithNonExistingMatch()
+        public async Task GetMatchDeleteDetailsByIdAsyncShouldReturnNullWithNonExistingMatch()
         {
             var testId = Guid.NewGuid().ToString();
             _matchRepositoryMock
@@ -327,7 +311,7 @@ namespace LoLEsportsHub.Services.Tests
         }
 
         [Test]
-        public async Task GetMatchDeleteDetailsByIdAsync_ShouldReturnDetails_WithExistingMatch()
+        public async Task GetMatchDeleteDetailsByIdAsyncShouldReturnDetailsWithExistingMatch()
         {
             var testMatch = new Match
             {
@@ -344,25 +328,23 @@ namespace LoLEsportsHub.Services.Tests
             Assert.AreEqual(testMatch.Id.ToString(), result.Id);
             Assert.AreEqual(testMatch.VODUrl, result.VodUrl);
         }
-        #endregion
-
-        #region GetMatchDetailsByIdAsync Tests
+        
         [Test]
-        public async Task GetMatchDetailsByIdAsync_ShouldReturnNull_WithNullId()
+        public async Task GetMatchDetailsByIdAsyncShouldReturnNullWithNullId()
         {
             var result = await _matchService.GetMatchDetailsByIdAsync(null);
             Assert.IsNull(result);
         }
 
         [Test]
-        public async Task GetMatchDetailsByIdAsync_ShouldReturnNull_WithInvalidGuid()
+        public async Task GetMatchDetailsByIdAsyncShouldReturnNullWithInvalidGuid()
         {
             var result = await _matchService.GetMatchDetailsByIdAsync("invalid-guid");
             Assert.IsNull(result);
         }
 
         [Test]
-        public async Task GetMatchDetailsByIdAsync_ShouldReturnNull_WithNonExistingMatch()
+        public async Task GetMatchDetailsByIdAsyncShouldReturnNullWithNonExistingMatch()
         {
             var testId = Guid.NewGuid().ToString();
             var emptyList = new List<Match>()
@@ -376,7 +358,7 @@ namespace LoLEsportsHub.Services.Tests
         }
 
         [Test]
-        public async Task GetMatchDetailsByIdAsync_ShouldReturnDetails_WithValidId()
+        public async Task GetMatchDetailsByIdAsyncShouldReturnDetailsWithValidId()
         {
             var testMatch = new Match
             {
@@ -397,25 +379,23 @@ namespace LoLEsportsHub.Services.Tests
             Assert.AreEqual(testMatch.Region, result.Region);
             Assert.AreEqual(testMatch.VODUrl, result.VodUrl);
         }
-        #endregion
 
-        #region SoftDeleteMatchAsync Tests
         [Test]
-        public async Task SoftDeleteMatchAsync_ShouldReturnFalse_WithNullId()
+        public async Task SoftDeleteMatchAsyncShouldReturnFalseWithNullId()
         {
             var result = await _matchService.SoftDeleteMatchAsync(null);
             Assert.IsFalse(result);
         }
 
         [Test]
-        public async Task SoftDeleteMatchAsync_ShouldReturnFalse_WithInvalidGuid()
+        public async Task SoftDeleteMatchAsyncShouldReturnFalseWithInvalidGuid()
         {
             var result = await _matchService.SoftDeleteMatchAsync("invalid-guid");
             Assert.IsFalse(result);
         }
 
         [Test]
-        public async Task SoftDeleteMatchAsync_ShouldReturnFalse_WithNonExistingMatch()
+        public async Task SoftDeleteMatchAsyncShouldReturnFalseWithNonExistingMatch()
         {
             var testId = Guid.NewGuid().ToString();
             _matchRepositoryMock
@@ -427,7 +407,7 @@ namespace LoLEsportsHub.Services.Tests
         }
 
         [Test]
-        public async Task SoftDeleteMatchAsync_ShouldReturnTrue_WithExistingMatch()
+        public async Task SoftDeleteMatchAsyncShouldReturnTrueWithExistingMatch()
         {
             var testMatch = new Match { Id = Guid.NewGuid() };
             _matchRepositoryMock
@@ -440,6 +420,5 @@ namespace LoLEsportsHub.Services.Tests
             var result = await _matchService.SoftDeleteMatchAsync(testMatch.Id.ToString());
             Assert.IsTrue(result);
         }
-        #endregion
     }
 }
