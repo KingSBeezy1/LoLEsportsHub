@@ -51,7 +51,7 @@ donet run
 **5. Open your browser and navigate to:**
 
 ```bash
-[git clone https://github.com/<your-username>/LoLEsportsHub.git](http://localhost:{localPort})
+http://localhost:{localPort}
 ```
 
 ---
