@@ -27,7 +27,7 @@ Repository for the **LoLEsportsHub** project — a web application built during 
 **1. Clone the repository:**
 
 ```bash
-git clone https://github.com/<your-username>/LoLEsportsHub.git
+git clone https://github.com/KingSBeezy1/LoLEsportsHub.git
 ```
 
 **2. Navigate to the project directory:**
